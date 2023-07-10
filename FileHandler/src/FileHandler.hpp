@@ -36,6 +36,8 @@ class StringFileHandler : public FileHandler<std::string>
 {
 public:
     using FileHandler::FileHandler;
+    typedef std::shared_ptr<StringFileHandler> StringFileHandlerSPtrType;
+    typedef std::unique_ptr<StringFileHandler> StringFileHandlerUPtrType;
 
     void readFile(std::string &content) override
     {
@@ -109,6 +111,8 @@ class JsonFileHandler : public FileHandler<Json::Value>
 
 public:
     using FileHandler::FileHandler;
+    typedef std::shared_ptr<JsonFileHandler> JsonFileHandlerSPtrType;
+    typedef std::unique_ptr<JsonFileHandler> JsonFileHandlerUPtrType;
 
     void readFile(Json::Value &content) override
     {
