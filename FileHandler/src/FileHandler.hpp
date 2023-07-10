@@ -9,7 +9,7 @@
 #include <string>
 #include <stdexcept>
 #include <json/json.h>
-#include <iostream>
+#include <mutex>
 
 template <typename T>
 class FileHandler
@@ -29,6 +29,7 @@ public:
 
 protected:
     std::string filename;
+    std::mutex m_lock;
 };
 
 class StringFileHandler : public FileHandler<std::string>
@@ -38,6 +39,8 @@ public:
 
     void readFile(std::string &content) override
     {
+        std::lock_guard<std::mutex> lock(m_lock);
+
         std::ifstream file(filename);
         if (!file)
         {
@@ -68,6 +71,7 @@ public:
 
     void overWriteFile(const std::string &content) override
     {
+        std::lock_guard<std::mutex> lock(m_lock);
         std::ofstream file(filename, std::ios::trunc);
         if (!file)
         {
@@ -81,6 +85,7 @@ public:
 
     void clear() override
     {
+        std::lock_guard<std::mutex> lock(m_lock);
         std::ofstream file(filename, std::ofstream::trunc);
         if (!file)
         {
@@ -91,6 +96,7 @@ public:
 
     void deleteFile() override
     {
+        std::lock_guard<std::mutex> lock(m_lock);
         if (remove(filename.c_str()) != 0)
         {
             throw std::runtime_error("Failed to delete the file " + filename);
@@ -106,6 +112,7 @@ public:
 
     void readFile(Json::Value &content) override
     {
+        std::lock_guard<std::mutex> lock(m_lock);
         std::ifstream file(filename, std::ifstream::binary);
         if (!file)
         {
@@ -123,6 +130,7 @@ public:
 
     void overWriteFile(const Json::Value &content) override
     {
+        std::lock_guard<std::mutex> lock(m_lock);
         std::ofstream file(filename, std::ios::trunc);
         if (!file)
         {
@@ -136,6 +144,7 @@ public:
 
     void clear() override
     {
+        std::lock_guard<std::mutex> lock(m_lock);
         std::ofstream file(filename, std::ofstream::trunc);
         if (!file)
         {
@@ -146,6 +155,7 @@ public:
 
     void deleteFile() override
     {
+        std::lock_guard<std::mutex> lock(m_lock);
         if (remove(filename.c_str()) != 0)
         {
             throw std::runtime_error("Failed to delete the file " + filename);
