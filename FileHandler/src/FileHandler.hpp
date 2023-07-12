@@ -60,6 +60,7 @@ public:
 
     void writeFile(const std::string &content) override
     {
+        std::lock_guard<std::mutex> lock(m_lock);
         std::ofstream file(filename, std::ios::app);
         if (!file)
         {
