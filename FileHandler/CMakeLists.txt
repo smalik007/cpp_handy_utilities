@@ -7,7 +7,7 @@ PROJECT(RunProgram)
 # set c++17 standard
 if(CMAKE_VERSION VERSION_LESS "3.1")
   if(CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=gnu++11")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=gnu++17")
   endif()
 else()
   set(CMAKE_CXX_STANDARD 17)
@@ -16,7 +16,15 @@ endif()
 find_package(jsoncpp CONFIG REQUIRED)
 
 # add CFLAGS
-add_definitions("-O3 -Wall -g -lstdc++ -Wl,-rpath -fpermissive -Wno-unused-variable -Wno-unused-function -Wno-unused-but-set-variable -std=c++17")
+add_definitions("-O3 -lstdc++ -Wl,-rpath -fpermissive -std=c++17")
+# add_definitions("-g") # debugging symbol
+
+# Manage warnings
+add_definitions("-Wall") # enable all warnings
+# supress individual warning if needed
+# add_definitions("-Wno-unused-variable")
+# add_definitions("-Wno-unused-function -Wno-unused-but-set-variable")
+
 
 file(GLOB SOURCES "src/*.hpp" "src/*.cpp")
 
