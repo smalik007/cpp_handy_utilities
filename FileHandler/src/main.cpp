@@ -43,7 +43,7 @@ void demonstrateTextFileHandler()
         cout << read_data << endl;
 
         /* Deleting the file */
-        // text_file_obj.deleteFile();
+        text_file_obj.deleteFile();
     }
     catch (const std::exception &e)
     {
@@ -108,8 +108,8 @@ void demonstrateJsonFileHandler()
 
 int main()
 {
-    // demonstrateTextFileHandler();
-    demonstrateJsonFileHandler();
+    demonstrateTextFileHandler();
+    // demonstrateJsonFileHandler();
 
     return 0;
 }
