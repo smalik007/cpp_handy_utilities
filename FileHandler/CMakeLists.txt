@@ -24,7 +24,7 @@ add_definitions("-Wall") # enable all warnings
 # supress individual warning if needed
 # add_definitions("-Wno-unused-variable")
 # add_definitions("-Wno-unused-function -Wno-unused-but-set-variable")
-
+add_definitions("-Wp,-w")
 
 file(GLOB SOURCES "src/*.hpp" "src/*.cpp")
 

@@ -32,12 +32,12 @@ protected:
     std::mutex m_lock;
 };
 
-class StringFileHandler : public FileHandler<std::string>
+class TextFileHandler : public FileHandler<std::string>
 {
 public:
     using FileHandler::FileHandler;
-    typedef std::shared_ptr<StringFileHandler> StringFileHandlerSPtrType;
-    typedef std::unique_ptr<StringFileHandler> StringFileHandlerUPtrType;
+    typedef std::shared_ptr<TextFileHandler> TextFileHandlerSPtrType;
+    typedef std::unique_ptr<TextFileHandler> TextFileHandlerUPtrType;
 
     void readFile(std::string &content) override
     {

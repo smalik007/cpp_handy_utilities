@@ -6,42 +6,44 @@
 
 using namespace std;
 
-void demonstrateStringFileHandler()
+#define ABC "ABC"
+
+void demonstrateTextFileHandler()
 {
     try
     {
 
         const string filename = "string_file.txt";
         string read_data;
-        StringFileHandler string_file_obj(filename);
+        TextFileHandler text_file_obj(filename);
 
         /* This should thow an exception as we are reading a file before it's creation */
-        // string_file_obj.readFile(read_data);
+        // text_file_obj.readFile(read_data);
         // cout << "Step 1 : Reading file content" << endl;
         // cout << read_data << endl;
 
-        string_file_obj.clear();
-        string_file_obj.writeFile("Writing some random string");
-        string_file_obj.readFile(read_data);
+        text_file_obj.clear();
+        text_file_obj.writeFile("Writing some random string");
+        text_file_obj.readFile(read_data);
         cout << "Step 1 : Reading file content" << endl;
         cout << read_data << endl;
 
         /* Appending in file */
         read_data.clear();
-        string_file_obj.writeFile("Appending some more info");
-        string_file_obj.readFile(read_data);
+        text_file_obj.writeFile("Appending some more info");
+        text_file_obj.readFile(read_data);
         cout << "Step 2: Reading file content" << endl;
         cout << read_data << endl;
 
         /* Overwriting content in file */
         read_data.clear();
-        string_file_obj.overWriteFile("Overwriting the content");
-        string_file_obj.readFile(read_data);
+        text_file_obj.overWriteFile("Overwriting the content");
+        text_file_obj.readFile(read_data);
         cout << "Step 3: Reading file content" << endl;
         cout << read_data << endl;
 
         /* Deleting the file */
-        // string_file_obj.deleteFile();
+        // text_file_obj.deleteFile();
     }
     catch (const std::exception &e)
     {
@@ -106,7 +108,7 @@ void demonstrateJsonFileHandler()
 
 int main()
 {
-    // demonstrateStringFileHandler();
+    // demonstrateTextFileHandler();
     demonstrateJsonFileHandler();
 
     return 0;
